@@ -30,18 +30,17 @@ export default function Editor({ height = '100%' }) {
   }, [markdown, updateMarkdown]);
 
   return (
-    <div className="h-full flex flex-col" data-testid="editor-container">
-      <div className="bg-gray-100 px-4 py-2 border-b border-gray-200">
+    <div className="h-full w-full flex flex-col overflow-hidden" data-testid="editor-container">
+      <div className="bg-gray-100 px-4 py-2 border-b border-gray-200 flex-shrink-0">
         <h2 className="text-sm font-medium text-gray-700">Editor</h2>
       </div>
       <textarea
         ref={textareaRef}
-        className="flex-1 p-4 font-mono text-sm resize-none focus:outline-none"
+        className="flex-1 w-full h-full p-4 font-mono text-sm resize-none focus:outline-none overflow-auto"
         value={markdown}
         onChange={(e) => updateMarkdown(e.target.value)}
         placeholder="Write your documentation in Markdown..."
         data-testid="editor-textarea"
-        style={{ width: '80%', height: '800px' }}
       />
     </div>
   );
