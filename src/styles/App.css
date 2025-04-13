@@ -1,0 +1,124 @@
+/* src/styles/App.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100 text-gray-800 font-sans;
+}
+
+/* Custom styling */
+.prose pre {
+  @apply bg-gray-50 p-4 rounded;
+}
+
+.prose h1 {
+  @apply text-3xl font-bold mt-6 mb-4;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold mt-5 mb-3;
+}
+
+.prose h3 {
+  @apply text-xl font-medium mt-4 mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-4;
+}
+
+.prose ul {
+  @apply list-disc list-inside my-2;
+}
+
+.prose ol {
+  @apply list-decimal list-inside my-2;
+}
+
+.prose a {
+  @apply text-blue-600 hover:underline;
+}
+
+.prose code:not(pre code) {
+  @apply bg-gray-100 px-1 py-0.5 rounded text-sm font-mono;
+}
+
+.prose table {
+  @apply border-collapse border border-gray-300 my-4;
+}
+
+.prose table th,
+.prose table td {
+  @apply border border-gray-300 p-2;
+}
+
+.prose table th {
+  @apply bg-gray-100;
+}
+
+/* Syntax highlighting */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-gray-500;
+}
+
+.token.punctuation {
+  @apply text-gray-700;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  @apply text-indigo-600;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+  @apply text-green-600;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  @apply text-yellow-600;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  @apply text-blue-600;
+}
+
+.token.function {
+  @apply text-pink-600;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  @apply text-orange-600;
+}
+
+.token.important,
+.token.bold {
+  @apply font-bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  @apply cursor-help;
+}
