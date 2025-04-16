@@ -1,5 +1,43 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# --- Go-specific ignores ---
+# Binaries
+/bin/
+/out/
+*.exe
+*.test
 
+# Dependency directories
+/vendor/
+/go/pkg/
+
+# Go workspace file
+go.work
+
+# IDE/Editor specific
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Compiled Object files
+*.o
+*.a
+
+# Debug files
+debug
+*.debug
+
+# Test output
+*.out
+
+# Go coverage files
+*.coverprofile
+*.cov
+
+# Go modules
+/go.sum
+/go.mod
+
+# --- Original JavaScript/Node.js ignores ---
 # dependencies
 /node_modules
 /.pnp

@@ -1,3 +1,4 @@
+
 body {
   @apply bg-gray-100 text-gray-800 font-sans;
 }
@@ -119,6 +120,3 @@ body {
 }
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
