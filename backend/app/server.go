@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	envLoader "docwikify/backend/app/config"
+	"docwikify/backend/app/middleware"
 	st "docwikify/backend/data/storage"
-	e "docwikify/backend/data/storage/entity"
+	"docwikify/backend/service/documents/models"
 	"fmt"
 	"os"
 	"syscall"
@@ -14,40 +15,44 @@ import (
 
 	"gorm.io/gorm"
 
+	"os/signal"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
-	"os/signal"
 )
 
 type Server struct {
 	DBConn *gorm.DB
+	Echo   *echo.Echo
 }
 
 func (s *Server) StartDb() {
-
 	envLoader.LoadAllEnv()
-
 	postgresDialect := st.NewPostgreDialect()
+
 	dsn := envLoader.LoadEnv("DB_DSN")
-
 	dbc, err := st.NewDbClient(postgresDialect, dsn)
-
-	s.DBConn = dbc.DB
 
 	if err != nil {
 		panic(err)
 	}
 
-	dbc.Migrate(&e.Document{})
+	s.DBConn = dbc.DB
+	dbc.Migrate(&models.Document{})
 }
 
 func (server *Server) Start() {
 	e := echo.New()
+	server.Echo = e
 
 	s := http.Server{
 		Addr:    ":8080",
 		Handler: e,
 	}
+
+	e.Use(middleware.Logger)
+
+	Init(server)
 
 	// Channel to listen for interrupt or terminate signals
 	quit := make(chan os.Signal, 1)
