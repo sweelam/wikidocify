@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	reqresp "docwikify/backend/app/resource/documents/req_resp"
+	apiModels "docwikify/backend/app/resource/documents-api/models"
 	"docwikify/backend/service/documents/models"
 	"docwikify/backend/service/documents/repositories"
 	"time"
@@ -16,7 +16,7 @@ func NewDocumentService(repo repositories.DocumentRepository) *DocumentService {
 	return &DocumentService{repo: repo}
 }
 
-func (s *DocumentService) CreateDocument(ctx context.Context, req *reqresp.DocumentRequest) (*reqresp.DocumentResponse, error) {
+func (s *DocumentService) CreateDocument(ctx context.Context, req *apiModels.DocumentRequest) (*apiModels.DocumentResponse, error) {
 
 	// Convert API model to DB model
 	doc := &models.Document{
@@ -29,7 +29,7 @@ func (s *DocumentService) CreateDocument(ctx context.Context, req *reqresp.Docum
 	}
 
 	// Convert DB model back to API response
-	return &reqresp.DocumentResponse{
+	return &apiModels.DocumentResponse{
 		ID:        doc.ID.String(),
 		Title:     doc.Title,
 		Author:    doc.Author,

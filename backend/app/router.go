@@ -1,13 +1,13 @@
 package main
 
 import (
-	documentResource "docwikify/backend/app/resource/documents"
+	documentResource "docwikify/backend/app/resource/documents-api/handlers"
 	"docwikify/backend/service"
 	"docwikify/backend/service/documents/repositories"
 )
 
 func Init(server *Server) {
-	var DOC_RESOURCE_PATH string = "api/v1/documents"
+	DOC_RESOURCE_PATH := "api/v1/documents"
 
 	router := server.Echo.Router()
 
