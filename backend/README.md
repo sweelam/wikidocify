@@ -4,4 +4,5 @@ The project itself follow microservice architecture.
 
 
 ## How to start 
+You can find docker compose for manual testing, or you can use the make file
 > make run
