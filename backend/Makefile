@@ -1,7 +1,7 @@
 .PHONY: build run clean docker-up docker-down
 
 build:
-	go build -o bin/wiki-app ./app/. 
+	go build -o bin/wiki-app ./cmd/. 
 
 docker-up: 
 	podman-compose up -d
