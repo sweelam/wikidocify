@@ -1,17 +1,6 @@
 version: "3.8"
 
 services:
-  app:
-    build: .
-    environment:
-      - DB_DSN=postgres://${DB_USER:-db_user}:${DB_PASSWORD:-123qwe}@db:5432/${DB_NAME:-docwikify}?sslmode=disable
-    networks:
-      - docwikify-network
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
-
   db:
     image: postgres:13-alpine
     environment:
