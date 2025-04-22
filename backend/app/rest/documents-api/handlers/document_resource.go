@@ -1,7 +1,7 @@
 package documentResource
 
 import (
-	reqresp "docwikify/backend/app/resource/documents-api/models"
+	reqresp "docwikify/backend/app/rest/documents-api/models"
 	"docwikify/backend/service"
 	"fmt"
 	"net/http"

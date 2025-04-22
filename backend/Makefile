@@ -4,10 +4,10 @@ build:
 	go build -o bin/wiki-app ./cmd/. 
 
 docker-up: 
-	podman-compose up -d
+	docker compose up -d
 
 docker-down:
-	podman-compose down 
+	docker compose down 
 
 run: build docker-up
 	sleep 10
@@ -15,4 +15,4 @@ run: build docker-up
 
 clean:
 	rm -rf bin/
-	podman-compose down -v
+	docker compose down -v

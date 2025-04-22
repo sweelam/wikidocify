@@ -14,7 +14,7 @@ func Logger(next echo.HandlerFunc) echo.HandlerFunc {
 		// Set a request ID for tracking
 		requestID := c.Request().Header.Get("X-Request-ID")
 		if requestID == "" {
-			requestID = generateRequestID() // Implement this function
+			requestID = generateRequestID()
 		}
 
 		c.Set("RequestID", requestID)
@@ -44,7 +44,6 @@ func Logger(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 func generateRequestID() string {
-	// Implementation to generate a unique request ID
 	return time.Now().Format("20060102150405") + "-" + randomString(6)
 }
 

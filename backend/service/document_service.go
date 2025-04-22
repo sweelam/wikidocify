@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	apiModels "docwikify/backend/app/resource/documents-api/models"
+	apiModels "docwikify/backend/app/rest/documents-api/models"
 	"docwikify/backend/service/documents/models"
 	"docwikify/backend/service/documents/repositories"
 	"time"

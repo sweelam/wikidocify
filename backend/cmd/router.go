@@ -1,7 +1,7 @@
 package main
 
 import (
-	documentResource "docwikify/backend/app/resource/documents-api/handlers"
+	documentResource "docwikify/backend/app/rest/documents-api/handlers"
 	"docwikify/backend/service"
 	"docwikify/backend/service/documents/repositories"
 )
