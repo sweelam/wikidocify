@@ -16,4 +16,5 @@ func Init(server *Server) {
 	docResource := documentResource.NewDocumentResource(docService)
 
 	router.Add("POST", DOC_RESOURCE_PATH, docResource.AddDocument)
+	router.Add("GET", DOC_RESOURCE_PATH, docResource.GetAllDocuments)
 }

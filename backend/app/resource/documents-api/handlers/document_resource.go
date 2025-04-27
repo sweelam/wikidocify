@@ -35,3 +35,13 @@ func (d *DocumentResource) AddDocument(c echo.Context) error {
 
 	return c.JSON(http.StatusCreated, createdDoc)
 }
+
+func (d *DocumentResource) GetAllDocuments(c echo.Context) error {
+	documents, err := d.service.GetAll(c.Request().Context())
+
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, documents)
+}

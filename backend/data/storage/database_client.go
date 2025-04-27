@@ -1,9 +1,11 @@
 package storage
 
 import (
-	"gorm.io/gorm"
 	"log"
 	"time"
+
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 type DbClient struct {
@@ -11,7 +13,10 @@ type DbClient struct {
 }
 
 func NewDbClient(dbDialect DbDialect, dsn string) (*DbClient, error) {
-	db, err := gorm.Open(dbDialect.Dial(dsn), &gorm.Config{})
+	db, err := gorm.Open(dbDialect.Dial(dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+	})
+
 	if err != nil {
 		log.Fatal(err)
 		panic(err)
