@@ -3,7 +3,6 @@ package documentResource
 import (
 	reqresp "docwikify/backend/app/resource/documents-api/models"
 	"docwikify/backend/service"
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -30,8 +29,6 @@ func (d *DocumentResource) AddDocument(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 	}
-
-	fmt.Println("Doc created!")
 
 	return c.JSON(http.StatusCreated, createdDoc)
 }
