@@ -45,8 +45,8 @@ func (r *GormDocumentRepository) List(ctx context.Context, page, pageSize int) (
 	return documents, err
 }
 
-func (r *GormDocumentRepository) GetAll(ctx context.Context) ([]models.Document, error) {
-	var documents []models.Document
+func (r *GormDocumentRepository) GetAll(ctx context.Context) ([]*models.Document, error) {
+	var documents []*models.Document
 	err := r.db.WithContext(ctx).Find(&documents).Error
 	return documents, err
 }

@@ -9,7 +9,7 @@ import (
 
 type DocumentRepository interface {
 	Create(ctx context.Context, document *models.Document) error
-	GetAll(ctx context.Context) ([]models.Document, error)
+	GetAll(ctx context.Context) ([]*models.Document, error)
 	GetByID(ctx context.Context, id uuid.UUID) (*models.Document, error)
 	Update(ctx context.Context, document *models.Document) error
 	Delete(ctx context.Context, id uuid.UUID) error
