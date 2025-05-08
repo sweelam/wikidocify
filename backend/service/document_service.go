@@ -3,11 +3,15 @@ package service
 import (
 	"context"
 	apiModels "docwikify/backend/app/resource/documents-api/models"
-	reqresp "docwikify/backend/app/resource/documents-api/models"
 	"docwikify/backend/service/documents/models"
 	"docwikify/backend/service/documents/repositories"
 	"time"
 )
+
+type DocumentServiceInterface interface {
+	CreateDocument(ctx context.Context, doc *apiModels.DocumentRequest) (*apiModels.DocumentResponse, error)
+	GetAll(ctx context.Context) ([]apiModels.DocumentResponse, error)
+}
 
 type DocumentService struct {
 	repo repositories.DocumentRepository
@@ -44,16 +48,16 @@ func (s *DocumentService) CreateDocument(
 
 func (s *DocumentService) GetAll(
 	ctx context.Context,
-) ([]reqresp.DocumentResponse, error) {
+) ([]apiModels.DocumentResponse, error) {
 
 	documents, err := s.repo.GetAll(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	var documentResponses []reqresp.DocumentResponse
+	var documentResponses []apiModels.DocumentResponse
 	for _, doc := range documents {
-		documentResponses = append(documentResponses, reqresp.DocumentResponse{
+		documentResponses = append(documentResponses, apiModels.DocumentResponse{
 			ID:     doc.ID.String(),
 			Author: doc.Author,
 			Title:  doc.Title,

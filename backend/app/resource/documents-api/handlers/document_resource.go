@@ -9,10 +9,10 @@ import (
 )
 
 type DocumentResource struct {
-	service *service.DocumentService
+	service service.DocumentServiceInterface
 }
 
-func NewDocumentResource(service *service.DocumentService) *DocumentResource {
+func NewDocumentResource(service service.DocumentServiceInterface) *DocumentResource {
 	return &DocumentResource{service: service}
 }
 
