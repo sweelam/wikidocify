@@ -1,0 +1,5 @@
+1. Install the chart with the release name `wikidocify`:
+
+   helm install wikidocify charts/backend
+
+2. The backend service will be available on port {{ .Values.service.port }} of the service `wikidocify-backend`.

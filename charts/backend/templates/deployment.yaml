@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "backend.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "backend.fullname" . }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "backend.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "backend.fullname" . }}
+    spec:
+      containers:
+      - name: backend
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.app.containerPort }}
+        envFrom:
+        - secretRef:
+            name: {{ include "backend.fullname" . }}-db
+        env:
+        - name: DB_DSN
+          value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@{{ include \"backend.fullname\" . }}-postgres:{{ .Values.postgres.port }}/$(POSTGRES_DB)?sslmode=disable"
