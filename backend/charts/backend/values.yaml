@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: localhost/wikidocify/backend
+  tag: latest
+  pullPolicy: Never
+
+service:
+  type: ClusterIP
+  port: 80
+
+app:
+  containerPort: 8080
+
+postgres:
+  image:
+    repository: postgres
+    tag: 13-alpine
+  port: 5432
+  user: db_user
+  password: 123qwe
+  db: docwikify
