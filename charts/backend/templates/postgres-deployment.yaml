@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "backend.fullname" . }}-postgres
+  labels:
+    app.kubernetes.io/name: {{ include "backend.fullname" . }}-postgres
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "backend.fullname" . }}-postgres
+  template:
+    metadata:
+      labels:
+        app: {{ include "backend.fullname" . }}-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: {{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}
+        ports:
+        - containerPort: {{ .Values.postgres.port }}
+        envFrom:
+        - secretRef:
+            name: {{ include "backend.fullname" . }}-db
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: data
+        emptyDir: {}
